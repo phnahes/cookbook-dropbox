@@ -9,3 +9,4 @@
 
 include_recipe "dropbox::install"
 include_recipe "dropbox::config"
+include_recipe "dropbox::info"

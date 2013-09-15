@@ -1,23 +1,11 @@
-node['dropbox']['dir']['work'].each do |dir|
-	directory "#{dir}" do
-		owner "root"
-		group "root"
-		mode "0755"
-		action :create
-		recursive true
-	end
-end
-
-remote_file "#{node['dropbox']['dir']['work']}/dropbox.py" do
-        source "#{node['dropbox']['script']['url']}"
+remote_file "#{node[:dropbox]["dir"]["work"]}/dropbox.py" do
+        source "#{node[:dropbox]["script"]["url"]}"
         mode "0755"
 end
 
-service "dropbox" do
-	supports :status => false, :restart => true, :reload => true
-	pattern "dropbox"
-	action [ :enable ]
-end
+package "python-gpgme"
+
+execute "#{node[:dropbox]["dir"]["work"]}/dropbox.py start -i"
 
 template "/etc/init.d/dropbox" do
 	source "init-dropbox.erb"
@@ -27,7 +15,8 @@ template "/etc/init.d/dropbox" do
 end
 
 service "dropbox" do
-	action :start
+	supports :status => false, :restart => true, :reload => true
+	pattern "dropbox"
+	action [ :enable, :start ]
 end
-
 
