@@ -1,6 +1,6 @@
 # Directory
-default[:dropbox]["dir"]["work"] = "/data/dropbox"
-default[:dropbox]["dir"]["dist"] = "/data/dropbox/.dropbox-dist/" 
+default[:dropbox]["dir"]["work"] = "/data/_dropbox"
+default[:dropbox]["dir"]["dist"] = "/data/_dropbox/.dropbox-dist/" 
 
 # Tarball
 default[:dropbox]["tar"]["url"] = "http://www.dropbox.com/download/?plat=lnx.x86_64" 
