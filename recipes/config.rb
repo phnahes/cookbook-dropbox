@@ -3,6 +3,11 @@ remote_file "#{node[:dropbox]["dir"]["work"]}/dropbox.py" do
         mode "0755"
 end
 
+remote_file "#{node[:dropbox]["dir"]["work"]}/dropboxdir.py" do
+        source "#{node[:dropbox]["script"]["changeDir"]}"
+        mode "0755"
+end
+
 package "python-gpgme"
 
 execute "#{node[:dropbox]["dir"]["work"]}/dropbox.py start -i"
